@@ -1,12 +1,12 @@
 {
-  "name": "sapui5",
+  "name": "ui5.walkthrough",
   "version": "1.0.0",
-  "description": "The UI5 walktrough application",
-  "main": "index.js",
+  "description": "The UI5 walkthrough application",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ui5 serve -o test/mockServer.html"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "@ui5/cli": "^3",
+    "ui5-middleware-simpleproxy": "^3.5.1"
+  }
 }
