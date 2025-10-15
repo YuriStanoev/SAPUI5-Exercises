@@ -20,9 +20,9 @@
 		<content>
 			<l:HorizontalLayout>
 				<l:VerticalLayout>
-					<Label labelFor="address" text="{i18n>address}:"/>
+					<Label labelFor="address" text="{i18n>address}" showColon="true"/>
 					<FormattedText class="sapUiSmallMarginBottom"
-						htmlText="{/address/street}&lt;br>{/address/zip} {/address/city}&lt;br>{/address/country}"
+						htmlText="{/address/street}&lt;br&gt;{/address/zip} {/address/city}&lt;br&gt;{/address/country}"
 						id="address" width="200px"/>
 					<Link href="{
 							parts: [
@@ -34,7 +34,7 @@
 						text="{i18n>sendEmail}"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
-					<Label labelFor="salesAmount" text="{i18n>salesAmount}:"/>
+					<Label labelFor="salesAmount" text="{i18n>salesAmount}" showColon="true"/>
 					<Input description="{/currencyCode}" enabled="{/enabled}" id="salesAmount"
 						value="{
 							parts: [
@@ -49,35 +49,17 @@
 		</content>
 	</Panel>
 	<Panel headerText="{i18n>panel3HeaderText}" class="sapUiResponsiveMargin" width="auto">
-		<List headerText="{i18n>productListTitle}" items="{products>/Products}">
-			<items>
-				<ObjectListItem 
-                    press=".onItemSelected"
-                    type="Active"
-                    title="{products>ProductName}"
-					number="{
-						parts: [
-							{path: 'products>UnitPrice'},
-							{path: '/currencyCode'}
-						],
-						type: 'Currency',
-						formatOptions: { showMeasure: false }
-					}"
-					numberUnit="{/currencyCode}">
-					<attributes>
-						<ObjectAttribute text="{products>QuantityPerUnit}"/>
-						<ObjectAttribute title="{i18n>stockValue}"
-							text="{
-								parts: [
-									{path: 'products>UnitPrice'},
-									{path: 'products>UnitsInStock'},
-									{path: '/currencyCode'}
-								],
-								formatter: '.formatStockValue'
-							}"/>
-					</attributes>
-				</ObjectListItem>
-			</items>
+		<List
+			id="ProductList"
+			headerText="{i18n>productListTitle}"
+			items="{
+				path: 'products>/Products',
+				factory: '.productListFactory'
+			}">
+			<dependents>
+				<core:Fragment fragmentName="ui5.databinding.view.ProductSimple" type="XML"/>
+				<core:Fragment fragmentName="ui5.databinding.view.ProductExtended" type="XML"/>
+			</dependents>
 		</List>
 	</Panel>
 	<Panel id="productDetailsPanel" headerText="{i18n>panel4HeaderText}" class="sapUiResponsiveMargin" width="auto">

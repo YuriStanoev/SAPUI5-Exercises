@@ -43,9 +43,9 @@
 						"de"
 					],
 					"fallbackLocale": ""
-                }
-            }
-        },
+				}
+			}
+		},
 		"rootView": {
 			"viewName": "ui5.databinding.view.App",
 			"type": "XML",
